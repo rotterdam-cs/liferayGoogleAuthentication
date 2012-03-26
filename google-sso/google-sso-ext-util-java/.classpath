@@ -1,0 +1,11 @@
+<classpath>
+  <classpathentry kind="src" path="src/main/java" including="**/*.java"/>
+  <classpathentry kind="output" path="target/classes"/>
+  <classpathentry kind="var" path="M2_REPO/javax/servlet/jsp/jsp-api/2.0/jsp-api-2.0.jar"/>
+  <classpathentry kind="var" path="M2_REPO/javax/portlet/portlet-api/2.0/portlet-api-2.0.jar"/>
+  <classpathentry kind="var" path="M2_REPO/javax/servlet/servlet-api/2.4/servlet-api-2.4.jar"/>
+  <classpathentry kind="src" path="/google-sso-ext-service"/>
+  <classpathentry kind="var" path="M2_REPO/com/liferay/portal/portal-service/6.1.0/portal-service-6.1.0.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/liferay/portal/util-java/6.1.0/util-java-6.1.0.jar"/>
+  <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+</classpath>

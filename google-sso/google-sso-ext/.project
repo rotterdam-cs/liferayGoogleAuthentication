@@ -1,0 +1,22 @@
+<projectDescription>
+  <name>google-sso-ext</name>
+  <comment>NO_M2ECLIPSE_SUPPORT: Project files created with the maven-eclipse-plugin are not supported in M2Eclipse.</comment>
+  <projects>
+    <project>google-sso-ext-impl</project>
+    <project>google-sso-ext-lib-global</project>
+    <project>google-sso-ext-lib-portal</project>
+    <project>google-sso-ext-service</project>
+    <project>google-sso-ext-util-bridges</project>
+    <project>google-sso-ext-util-java</project>
+    <project>google-sso-ext-util-taglib</project>
+    <project>google-sso-ext-web</project>
+  </projects>
+  <buildSpec>
+    <buildCommand>
+      <name>org.eclipse.jdt.core.javabuilder</name>
+    </buildCommand>
+  </buildSpec>
+  <natures>
+    <nature>org.eclipse.jdt.core.javanature</nature>
+  </natures>
+</projectDescription>

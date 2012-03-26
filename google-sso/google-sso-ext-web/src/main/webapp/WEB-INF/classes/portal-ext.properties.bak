@@ -1,0 +1,90 @@
+google.connect.auth.enabled=true
+google.connect.app.id=898906274957.apps.googleusercontent.com
+google.connect.app.secret=DWSldwtD14Ds-3O5TAFY2o5U
+google.connect.oauth.auth.url=https://accounts.google.com/o/oauth2/auth
+google.connect.oauth.token.url=https://accounts.google.com/o/oauth2/token
+google.connect.oauth.redirect.url=http://localhost:8080/c/login/oauth2callback
+google.connect.graph.url=https://www.googleapis.com/oauth2/v1/userinfo
+google.connect.oauth.scope=https://www.googleapis.com/auth/userinfo.profile,https://www.googleapis.com/auth/userinfo.email
+google.connect.oauth.revoke=https://accounts.google.com/o/oauth2/revoke
+google.connect.verified.account.required=false
+
+#auto.login.hooks=com.liferay.portal.security.auth.CASAutoLogin,com.liferay.portal.security.auth.FacebookAutoLogin,com.liferay.portal.security.auth.NtlmAutoLogin,com.liferay.portal.security.auth.OpenIdAutoLogin,com.liferay.portal.security.auth.OpenSSOAutoLogin,com.liferay.portal.security.auth.RememberMeAutoLogin,com.liferay.portal.security.auth.SiteMinderAutoLogin
+
+auto.login.hooks=com.liferay.portal.security.auth.GoogleAutoLogin
+
+#
+# Enter a list of comma delimited paths that do not require authentication.
+#
+    auth.public.paths=\
+        /asset/get_categories,\
+        \
+        /blogs/find_entry,\
+        /blogs/rss,\
+        /blogs/trackback,\
+        \
+        /blogs_aggregator/rss,\
+        \
+        /bookmarks/open_entry,\
+        \
+        /calendar/find_event,\
+        \
+        /document_library/find_file_entry,\
+        /document_library/find_folder,\
+        /document_library/get_file,\
+        \
+        /flags/edit_flag,\
+        \
+        /iframe/proxy,\
+        \
+        /image_gallery_display/find_folder,\
+        /image_gallery_display/find_image,\
+        \
+        /journal/get_article,\
+        /journal/get_articles,\
+        /journal/get_latest_article_content,\
+        /journal/get_structure,\
+        /journal/get_template,\
+        /journal/rss,\
+        /journal/view_article_content,\
+        /journal_articles/view_article_content,\
+        \
+        /layouts_admin/robots,\
+        /layouts_admin/sitemap,\
+        \
+        /login/facebook_connect_oauth,\
+        \
+        /login/oauth2callback,\
+        \
+        /message_boards/find_category,\
+        /message_boards/find_message,\
+        /message_boards/find_thread,\
+        /message_boards/get_message_attachment,\
+        /message_boards/rss,\
+        \
+        /my_sites/view,\
+        \
+        /polls/view_chart,\
+        \
+        /portal/emoticons,\
+        /portal/expire_session,\
+        /portal/extend_session,\
+        /portal/extend_session_confirm,\
+        /portal/json_service,\
+        /portal/license,\
+        /portal/logout,\
+        /portal/open_id_request,\
+        /portal/open_id_response,\
+        /portal/portlet_url,\
+        /portal/session_click,\
+        /portal/session_tree_js_click,\
+        /portal/status,\
+        \
+        /search/open_search,\
+        /search/open_search_description.xml,\
+        \
+        /shopping/notify,\
+        \
+        /wiki/find_page,\
+        /wiki/get_page_attachment,\
+        /wiki/rss
