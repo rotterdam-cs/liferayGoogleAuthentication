@@ -1,30 +1,52 @@
-h2. Liferay - Google Authentication Module
+@/**@
+ @* Copyright (C) Rotterdam Community Solutions B.V.@
+ @* http://www.rotterdam-cs.com@
+ @*@
+ @***********************************************************************************************************************@
+ @*@
+ @* Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with@
+ @* the License. You may obtain a copy of the License at@
+ @*@
+ @*     http://www.apache.org/licenses/LICENSE-2.0@
+ @*@
+ @* Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on@
+ @* an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the@
+ @* specific language governing permissions and limitations under the License.@
+ @*/@
+
+h3. Liferay - Google Authentication Module
+
 This module is primary responsible for authenticating user with existing google account in liferay portal 6.1 CE ga1.
 
-h3. Component required:
+h5. Component required:
+
 	Maven - To build wars and deploy on liferay portal.
 	Liferay portal 6.1 CE ga1 
 
-h3. Google Oauth 2.0 Reference
-	https://developers.google.com/accounts/docs/OAuth2Login
-	https://developers.google.com/accounts/docs/OAuth2WebServer
+h5. Google Oauth 2.0 Reference
 
-h3. Setup/Configureto build deployable wars
+	"https://developers.google.com/accounts/docs/OAuth2Login":https://developers.google.com/accounts/docs/OAuth2Login
+	"https://developers.google.com/accounts/docs/OAuth2WebServer":https://developers.google.com/accounts/docs/OAuth2WebServer
+
+h5. Setup/Configure
+
+	- Configure you apps in Google - Generate Google Ouath2.0 Api Client Id and Secret
+		"https://code.google.com/apis/console#access":https://code.google.com/apis/console#access
 
 	- Checkout latest code from github repo (for enchanement, and security updated).
 
 	- Edit \liferayGoogleAuthentication\pom.xml to update your liferay-portal-6.1.0-ce-ga1 path on local dev enviroment.
-		 @<liferay.dir>D:/rotterdam/liferay-portal-6.1.0-ce-ga1</liferay.dir>@
+		 <blockquote><liferay.dir>D/rotterdam/liferay-portal-6.1.0-ce-ga1</liferay.dir></blockquote>
 
 	- cmd to \liferayGoogleAuthentication\google-sso
-		-	Execute mvn clean install package liferay:deploy
+		-	Execute mvn clean install package liferaydeploy
 
 	- cmd to \liferayGoogleAuthentication\google-login-hook
-		-	Execute mvn clean package liferay:deploy
+		-	Execute mvn clean package liferaydeploy
 
 	- add following properties in portal-ext.properties under \liferay-portal-6.1.0-ce-ga1\tomcat-7.0.23\webapps\ROOT\WEB-INF\classes
 
-			@
+			<blockquote>
 			google.connect.auth.enabled=true
 			google.connect.app.id=<google_oauth_client_api_key>
 			google.connect.app.secret=<google_oauth_client_secret>
@@ -113,6 +135,6 @@ h3. Setup/Configureto build deployable wars
 		        /wiki/find_page,\
 		        /wiki/get_page_attachment,\
 		        /wiki/rss
-				@
+				</blockquote>
 
 		- Restart liferay portal
