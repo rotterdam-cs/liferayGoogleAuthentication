@@ -23,11 +23,6 @@ h5. Component required:
 	Maven - To build wars and deploy on liferay portal.
 	Liferay portal 6.1 CE ga1 
 
-h5. Google Oauth 2.0 Reference
-
-	"https://developers.google.com/accounts/docs/OAuth2Login":https://developers.google.com/accounts/docs/OAuth2Login
-	"https://developers.google.com/accounts/docs/OAuth2WebServer":https://developers.google.com/accounts/docs/OAuth2WebServer
-
 h5. Setup/Configure
 
 	- Configure you apps in Google - Generate Google Ouath2.0 Api Client Id and Secret
@@ -38,11 +33,11 @@ h5. Setup/Configure
 	- Edit \liferayGoogleAuthentication\pom.xml to update your liferay-portal-6.1.0-ce-ga1 path on local dev enviroment.
 		 <blockquote><liferay.dir>D/rotterdam/liferay-portal-6.1.0-ce-ga1</liferay.dir></blockquote>
 
-	- cmd to \liferayGoogleAuthentication\google-sso
-		-	Execute mvn clean install package liferaydeploy
+	- cmd to \liferayGoogleAuthentication\google-sso and execute following command
+		<blockquote>mvn clean install package liferay:deploy</blockquote>
 
-	- cmd to \liferayGoogleAuthentication\google-login-hook
-		-	Execute mvn clean package liferaydeploy
+	- cmd to \liferayGoogleAuthentication\google-login-hook and execute following command
+		<blockquote>mvn clean package liferay:deploy</blockquote>
 
 	- add following properties in portal-ext.properties under \liferay-portal-6.1.0-ce-ga1\tomcat-7.0.23\webapps\ROOT\WEB-INF\classes
 
@@ -138,3 +133,9 @@ h5. Setup/Configure
 				</blockquote>
 
 		- Restart liferay portal
+
+h5. Google Oauth 2.0 Reference
+
+	"https://developers.google.com/accounts/docs/OAuth2Login":https://developers.google.com/accounts/docs/OAuth2Login
+	"https://developers.google.com/accounts/docs/OAuth2WebServer":https://developers.google.com/accounts/docs/OAuth2WebServer
+
