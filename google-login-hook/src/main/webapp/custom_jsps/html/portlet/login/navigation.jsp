@@ -122,7 +122,7 @@ if (Validator.isNotNull(strutsAction) && !strutsAction.equals("/login/login")) {
 					url="<%= taglibOpenFacebookConnectLoginWindow %>"
 				/>
 			</c:if>
-			
+			<%= showGoogleConnectIcon %>	
 			<c:if test="<%= showGoogleConnectIcon %>">
 				<portlet:renderURL var="loginRedirectURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
 					<portlet:param name="struts_action" value="/login/login_redirect" />
@@ -149,7 +149,11 @@ if (Validator.isNotNull(strutsAction) && !strutsAction.equals("/login/login")) {
 					url="<%= taglibOpenFacebookConnectLoginWindow %>"
 				/>
 			</c:if>
-
+			<liferay-ui:icon
+                                        image="../social_bookmarks/google-icon"
+                                        message="Google"
+                                        url="www.gmail.com"
+                                />
 			<c:if test="<%= showOpenIdIcon %>">
 				<portlet:renderURL var="openIdURL">
 					<portlet:param name="struts_action" value="/login/open_id" />
