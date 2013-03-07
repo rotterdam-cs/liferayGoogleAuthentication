@@ -12,10 +12,10 @@
 
   <properties>
   	
-    <liferay.dir>D:/rotterdam/liferay-portal-6.1.0-ce-ga1</liferay.dir>
+    <liferay.dir>/opt/liferay/resourceEditor611/liferay-portal-6.1.1-ce-ga2</liferay.dir>
     
     <liferay.auto.deploy.dir>${liferay.dir}/deploy</liferay.auto.deploy.dir>
-    <liferay.version>6.1.0</liferay.version>
+    <liferay.version>6.1.1</liferay.version>
     <liferay.tomcat.dir>${liferay.dir}/tomcat-7.0.23</liferay.tomcat.dir>
     <liferay.root.dir>${liferay.tomcat.dir}/webapps/ROOT</liferay.root.dir>
     <liferay.classes.dir>${liferay.root.dir}/WEB-INF/classes</liferay.classes.dir>
