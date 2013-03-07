@@ -1,0 +1,20 @@
+<plugin-package>
+        <name>google-sso-ext-web</name>
+        <module-id>rotterdam-cs/google-sso-ext-web/6.1.1/war</module-id>
+        <types>
+                <type>ext</type>
+        </types>
+        <tags>
+                <tag>google-sso</tag>
+        </tags>
+        <short-description>sss</short-description>
+        <long-description>sss</long-description>        
+        <page-url>www.rotterdam-cs.com</page-url>
+        <author>Florencia Gadea - Rotterdam CS</author>
+        <licenses>
+                <license osi-approved="true">LGPL</license>
+        </licenses>               
+        <liferay-versions>
+                <liferay-version>6.1.1+</liferay-version>
+        </liferay-versions>
+</plugin-package>
