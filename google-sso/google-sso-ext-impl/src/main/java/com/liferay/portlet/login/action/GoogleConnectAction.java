@@ -14,7 +14,6 @@
  * specific language governing permissions and limitations under the License.
  */
 
-
 package com.liferay.portlet.login.action;
 
 import java.util.Calendar;
@@ -33,6 +32,7 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
 import com.liferay.portal.NoSuchUserException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -52,6 +52,8 @@ import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.GoogleConnectUtil;
 import com.liferay.portal.util.GoogleWebKeys;
 import com.liferay.portal.util.WebKeys;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author Rajesh
@@ -149,6 +151,11 @@ public class GoogleConnectAction extends PortletAction {
 		}
 
 		String emailAddress = jsonObject.getString("email");
+
+		 if(! this.isAllowedDomain(companyId, emailAddress)){
+			 return;
+		 }
+		
 		if ((user == null) && Validator.isNotNull(emailAddress)) {
 			session.setAttribute(GoogleWebKeys.GOOGLE_USER_EMAIL_ADDRESS,
 					emailAddress);
@@ -164,6 +171,51 @@ public class GoogleConnectAction extends PortletAction {
 		} else {
 			addUser(session, companyId, jsonObject);
 		}
+	}
+
+	/**
+	 * It checks if the user's domain belong to the allowed ones
+	 * 
+	 * @param companyId
+	 * @param emailAddress
+	 * @return
+	 */
+	private boolean isAllowedDomain(long companyId, String emailAddress) {
+
+		try {
+			String[] userAndDomain = emailAddress.split("@");
+
+			if (userAndDomain.length != 2) {
+				return false;
+			}
+
+			String[] allowedDomains = GoogleConnectUtil
+					.getAllowedDomains(companyId);
+
+			// There is no list of allowed domains so all google ones are
+			// allowed.
+			if (allowedDomains == null || allowedDomains.length == 0) {
+				return true;
+			}
+
+			for (String domain : allowedDomains) {
+
+				if (domain.equals(userAndDomain[1])) {
+					return true;
+				}
+			}
+
+		} catch (SystemException ex) {
+			_log.error("Error getting the list of allowed domains", ex);
+			// As the error was related to reading the allowed domains list that
+			// doesn't exists i just return true
+			return true;
+		}
+
+		// The user domain doesn't much with any domain in the list of allowed
+		// domains
+		return false;
+
 	}
 
 	protected void addUser(HttpSession session, long companyId,
@@ -213,7 +265,7 @@ public class GoogleConnectAction extends PortletAction {
 		UserLocalServiceUtil.updatePasswordReset(user.getUserId(), true);
 
 		UserLocalServiceUtil.updateEmailAddressVerified(user.getUserId(), true);
-		
+
 		try {
 			byte[] image = GoogleConnectUtil.getProfileImage(pictureUrl);
 			UserLocalServiceUtil.updatePortrait(user.getUserId(), image);
@@ -281,7 +333,7 @@ public class GoogleConnectAction extends PortletAction {
 				contact.getTwitterSn(), contact.getYmSn(),
 				contact.getJobTitle(), groupIds, organizationIds, roleIds,
 				userGroupRoles, userGroupIds, serviceContext);
-		
+
 		try {
 			byte[] image = GoogleConnectUtil.getProfileImage(pictureUrl);
 			UserLocalServiceUtil.updatePortrait(user.getUserId(), image);

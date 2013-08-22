@@ -12,7 +12,7 @@
 
   <properties>
   	
-    <liferay.dir>D:/rotterdam/liferay-portal-6.1.0-ce-ga1</liferay.dir>
+    <liferay.dir>/opt/liferay/tzr/liferay/</liferay.dir>
     
     <liferay.auto.deploy.dir>${liferay.dir}/deploy</liferay.auto.deploy.dir>
     <liferay.version>6.1.0</liferay.version>

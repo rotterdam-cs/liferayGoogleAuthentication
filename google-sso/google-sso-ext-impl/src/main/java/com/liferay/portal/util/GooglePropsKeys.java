@@ -38,5 +38,7 @@ public interface GooglePropsKeys {
 	public static final String GOOGLE_CONNECT_AUTH_REVOKE = "google.connect.oauth.revoke";
 
 	public static final String GOOGLE_CONNECT_AUTH_SCOPE = "google.connect.oauth.scope";
+        
+        public static final String GOOGLE_CONNECT_ALLOWED_DOMAINS ="google.connect.allowed.domains";
 
 }

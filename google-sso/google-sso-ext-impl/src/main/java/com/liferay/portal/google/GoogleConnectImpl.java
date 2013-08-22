@@ -232,6 +232,11 @@ public class GoogleConnectImpl implements GoogleConnect {
 				GooglePropsKeys.GOOGLE_CONNECT_AUTH_REVOKE);
 	}
 
+        public String[] getAllowedDomains(long companyId)throws SystemException{
+         
+            return PrefsPropsUtil.getStringArray(companyId,
+				GooglePropsKeys.GOOGLE_CONNECT_ALLOWED_DOMAINS, StringPool.COMMA);
+        }
 	private static Log _log = LogFactoryUtil.getLog(GoogleConnectImpl.class);
 
 }

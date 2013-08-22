@@ -64,4 +64,5 @@ public interface GoogleConnect {
 	public byte[] getProfileImage(String pictureUrl) throws SystemException,
 			MalformedURLException, IOException;
 
+        public String[] getAllowedDomains(long companyId)throws SystemException;
 }

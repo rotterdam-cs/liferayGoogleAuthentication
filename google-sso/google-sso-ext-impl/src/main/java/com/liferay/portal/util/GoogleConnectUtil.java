@@ -103,6 +103,10 @@ public class GoogleConnectUtil {
 		return getGoogleConnect().getProfileImage(pictureUrl);
 	}
 
+        public static String[] getAllowedDomains(long companyId) throws SystemException {
+		return getGoogleConnect().getAllowedDomains(companyId);
+	}
+        
 	public void setFacebookConnect(GoogleConnect googleConnect) {
 		_googleConnect = googleConnect;
 	}
