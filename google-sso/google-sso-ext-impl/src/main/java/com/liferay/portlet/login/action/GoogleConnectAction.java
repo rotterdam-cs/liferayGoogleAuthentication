@@ -266,6 +266,12 @@ public class GoogleConnectAction extends PortletAction {
 
 		UserLocalServiceUtil.updateEmailAddressVerified(user.getUserId(), true);
 
+		user.setAgreedToTermsOfUse(true);
+		user.setReminderQueryQuestion("Created by");
+		user.setReminderQueryAnswer("Rotterdam CS");
+		user.setPasswordReset(false);
+                UserLocalServiceUtil.updateUser(user, true);
+          
 		try {
 			byte[] image = GoogleConnectUtil.getProfileImage(pictureUrl);
 			UserLocalServiceUtil.updatePortrait(user.getUserId(), image);
