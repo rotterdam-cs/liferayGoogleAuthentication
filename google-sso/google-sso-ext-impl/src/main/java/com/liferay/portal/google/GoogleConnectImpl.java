@@ -16,16 +16,6 @@
 
 package com.liferay.portal.google;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
-
-import javax.portlet.PortletRequest;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
-import org.apache.commons.io.IOUtils;
-
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.google.GoogleConnect;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
@@ -44,6 +34,13 @@ import com.liferay.portal.util.GooglePropsKeys;
 import com.liferay.portal.util.GoogleWebKeys;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PrefsPropsUtil;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import javax.portlet.PortletRequest;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import org.apache.commons.io.IOUtils;
 
 /**
  * @author Rajesh
@@ -169,8 +166,7 @@ public class GoogleConnectImpl implements GoogleConnect {
 		String token = (String) session
 				.getAttribute(GoogleWebKeys.GOOGLE_ACCESS_TOKEN);
 
-		JSONObject jsonObject = getGraphResources(companyId, "/me", token,
-				"id,picture");
+		JSONObject jsonObject = getGraphResources(companyId, "", token, "");
 
 		return jsonObject.getString("picture");
 	}
@@ -233,10 +229,10 @@ public class GoogleConnectImpl implements GoogleConnect {
 	}
 
         public String[] getAllowedDomains(long companyId)throws SystemException{
-         
+
             return PrefsPropsUtil.getStringArray(companyId,
 				GooglePropsKeys.GOOGLE_CONNECT_ALLOWED_DOMAINS, StringPool.COMMA);
         }
-	private static Log _log = LogFactoryUtil.getLog(GoogleConnectImpl.class);
+	private static final Log _log = LogFactoryUtil.getLog(GoogleConnectImpl.class);
 
 }

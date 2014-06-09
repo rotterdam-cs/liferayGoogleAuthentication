@@ -16,21 +16,6 @@
 
 package com.liferay.portlet.login.action;
 
-import java.util.Calendar;
-import java.util.List;
-import java.util.Locale;
-
-import javax.portlet.PortletConfig;
-import javax.portlet.RenderRequest;
-import javax.portlet.RenderResponse;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import org.apache.struts.action.ActionForm;
-import org.apache.struts.action.ActionForward;
-import org.apache.struts.action.ActionMapping;
-
 import com.liferay.portal.NoSuchUserException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONObject;
@@ -52,15 +37,25 @@ import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.GoogleConnectUtil;
 import com.liferay.portal.util.GoogleWebKeys;
 import com.liferay.portal.util.WebKeys;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.Calendar;
+import java.util.List;
+import java.util.Locale;
+import javax.portlet.PortletConfig;
+import javax.portlet.RenderRequest;
+import javax.portlet.RenderResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionForward;
+import org.apache.struts.action.ActionMapping;
 
 /**
  * @author Rajesh
  */
 public class GoogleConnectAction extends PortletAction {
 
-	private static Log _log = LogFactoryUtil.getLog(GoogleConnectAction.class);
+	private static final Log _log = LogFactoryUtil.getLog(GoogleConnectAction.class);
 
 	@Override
 	public ActionForward render(ActionMapping mapping, ActionForm form,
@@ -126,15 +121,13 @@ public class GoogleConnectAction extends PortletAction {
 	protected void setGoogleCredentials(HttpSession session, long companyId,
 			String token) throws Exception {
 
-		JSONObject jsonObject = GoogleConnectUtil.getGraphResources(companyId,
-				"", token, "");
-
-		if (_log.isDebugEnabled())
-			_log.debug("jsonObject=" + jsonObject.toString());
+		JSONObject jsonObject = GoogleConnectUtil.getGraphResources(companyId, "", token, "");
 
 		if ((jsonObject == null) || (jsonObject.getJSONObject("error") != null)) {
 			return;
 		}
+
+                _log.info("jsonObject=" + jsonObject.toString());
 
 		if (GoogleConnectUtil.isVerifiedAccountRequired(companyId)
 				&& !jsonObject.getBoolean("verified_email")) {
@@ -143,7 +136,7 @@ public class GoogleConnectAction extends PortletAction {
 
 		User user = null;
 
-		long googleId = jsonObject.getLong("id");
+		long googleId = jsonObject.getLong("sub"); // In Google OAuth 2.0 (early implementation) it was "id" instead of "sub"
 
 		if (googleId > 0) {
 			session.setAttribute(GoogleWebKeys.GOOGLE_USER_ID,
@@ -155,7 +148,7 @@ public class GoogleConnectAction extends PortletAction {
 		 if(! this.isAllowedDomain(companyId, emailAddress)){
 			 return;
 		 }
-		
+
 		if ((user == null) && Validator.isNotNull(emailAddress)) {
 			session.setAttribute(GoogleWebKeys.GOOGLE_USER_EMAIL_ADDRESS,
 					emailAddress);
@@ -175,7 +168,7 @@ public class GoogleConnectAction extends PortletAction {
 
 	/**
 	 * It checks if the user's domain belong to the allowed ones
-	 * 
+	 *
 	 * @param companyId
 	 * @param emailAddress
 	 * @return
@@ -271,7 +264,7 @@ public class GoogleConnectAction extends PortletAction {
 		user.setReminderQueryAnswer("Rotterdam CS");
 		user.setPasswordReset(false);
                 UserLocalServiceUtil.updateUser(user, true);
-          
+
 		try {
 			byte[] image = GoogleConnectUtil.getProfileImage(pictureUrl);
 			UserLocalServiceUtil.updatePortrait(user.getUserId(), image);

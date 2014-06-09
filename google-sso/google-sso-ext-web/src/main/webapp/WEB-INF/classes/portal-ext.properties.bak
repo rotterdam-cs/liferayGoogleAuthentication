@@ -4,8 +4,8 @@ google.connect.app.secret=DWSldwtD14Ds-3O5TAFY2o5U
 google.connect.oauth.auth.url=https://accounts.google.com/o/oauth2/auth
 google.connect.oauth.token.url=https://accounts.google.com/o/oauth2/token
 google.connect.oauth.redirect.url=http://localhost:8080/c/login/oauth2callback
-google.connect.graph.url=https://www.googleapis.com/oauth2/v1/userinfo
-google.connect.oauth.scope=https://www.googleapis.com/auth/userinfo.profile,https://www.googleapis.com/auth/userinfo.email
+google.connect.graph.url=https://www.googleapis.com/plus/v1/people/me/openIdConnect
+google.connect.oauth.scope=profile,email
 google.connect.oauth.revoke=https://accounts.google.com/o/oauth2/revoke
 google.connect.verified.account.required=false
 
